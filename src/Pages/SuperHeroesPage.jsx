@@ -7,6 +7,7 @@ import { Spinner } from '../components';
 const SuperHeroesPage = () => {
     const [data, setData] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
+    const [error, setError] = useState("");
 
     useEffect(() => {
         axios.get("http://localhost:4000/superheroes")
@@ -15,13 +16,20 @@ const SuperHeroesPage = () => {
                 setData(res.data);
                 setIsLoading(false);
             }, 3000)
+        }).catch((error) => {
+            setError(error.message);
+            setIsLoading(false)
         })
-    })
+    }, [])
 
     if(isLoading) {
         return (
             <Spinner />
         )
+    }
+    
+    if(error) {
+        return <Spinner />
     }
 
     return (

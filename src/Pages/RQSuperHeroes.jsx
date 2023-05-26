@@ -5,16 +5,20 @@ import axios from 'axios';
 import { Spinner } from '../components';
 
 const fetchSuperHeroes = () => {
-    return axios.get("http://localhost:4000/superheroes")
+    return axios.get("http://localhost:4000/superheroes1")
 }
 
 const RQSuperHeroes = () => {
-    const {isLoading, data} = useQuery("super-heroes", fetchSuperHeroes)
+    const {isLoading, data, isError, error} = useQuery("super-heroes", fetchSuperHeroes)
 
     if(isLoading) {
         return (
             <Spinner />
         )
+    }
+
+    if(isError) {
+        return <h2>{error.message}</h2>
     }
 
     return (
@@ -50,4 +54,13 @@ const fetchSuperHeroes = () => {
 } 
 
 const { isLoading , data } = useQuery("", fetchSuperHeroes)
+
+const { isLoading, data, isError, error} = useQuery("", _)
+
+if(isError) {
+    return (
+        <h3>{error.message}</h3>
+    )
+}
+
 */
