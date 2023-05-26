@@ -1,6 +1,7 @@
 import { Routes, Route } from "react-router-dom";
 import { HomePage, RQSuperHeroes, SuperHeroesPage } from "./Pages";
 
+
 function App() {
 
 
@@ -13,4 +14,6 @@ function App() {
   )
 }
 
-export default App
+export default App;
+
+
