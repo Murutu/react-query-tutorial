@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 
-import { Spinner } from '../components';
+import { Navbar, Spinner } from '../components';
 
 
 const SuperHeroesPage = () => {
@@ -34,6 +34,7 @@ const SuperHeroesPage = () => {
 
     return (
     <>
+        <Navbar />
         <h2>Super Heroes Page</h2>
         {data.map((hero) => {
             return (
@@ -46,3 +47,8 @@ const SuperHeroesPage = () => {
 
 export default SuperHeroesPage;
 
+/*
+// Query Cache
+If we navigae from home to the Traditional Super Heroes page . We will see the loading spinner then the list of heroes.
+However when we do this again it will show the spinner .  
+*/
