@@ -22,7 +22,11 @@ const onError = () => {
 const RQSuperHeroes = () => {
     const {isLoading, data, isError, error, isFetching, refetch} = useQuery("super-heroes", fetchSuperHeroes, {
         onSuccess,
-        onError
+        onError,
+        select: (data) => {
+            const superHeroNames = data?.data.map((hero) => hero.name);
+            return superHeroNames;
+        }
     });
 
 
@@ -49,9 +53,16 @@ const RQSuperHeroes = () => {
                 reverseOrder={false}
             />
             <button onClick={refetch}> Fetch Button </button>
-            {data?.data.map(hero => {
+            {/* {data?.data.map(hero => {
                 return (
                     <div key={hero.name}>{hero.name}</div>
+                )
+            })} */}
+            {data.map((heroName) => {
+                return (
+                    <>
+                    <div key={heroName}>{heroName}</div>
+                    </>
                 )
             })}
         </>
